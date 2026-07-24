@@ -1,0 +1,31 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Planet -->
+  <circle cx="30" cy="34" r="14" fill="#7C6BF0"/>
+  <circle cx="30" cy="34" r="14" fill="url(#planetShade)"/>
+
+  <!-- Planet surface details -->
+  <ellipse cx="25" cy="28" rx="3.5" ry="2.5" fill="#5B4CD6" opacity="0.6"/>
+  <ellipse cx="34" cy="40" rx="4.5" ry="2.5" fill="#5B4CD6" opacity="0.5"/>
+  <ellipse cx="36" cy="29" rx="2.5" ry="1.8" fill="#5B4CD6" opacity="0.4"/>
+
+  <!-- Orbit ring -->
+  <ellipse cx="30" cy="34" rx="26" ry="9" fill="none" stroke="#4B3F91" stroke-width="2" opacity="0.85" transform="rotate(-18 30 34)"/>
+
+  <!-- Moon on the orbit path -->
+  <circle cx="53" cy="20" r="4.5" fill="#E8E4FF"/>
+  <circle cx="52" cy="19" r="1" fill="#C9C2F0" opacity="0.8"/>
+  <circle cx="54.5" cy="21.5" r="0.7" fill="#C9C2F0" opacity="0.6"/>
+
+  <!-- Small stars -->
+  <circle cx="8" cy="10" r="1.2" fill="#E8E4FF"/>
+  <circle cx="14" cy="52" r="1" fill="#E8E4FF" opacity="0.8"/>
+  <circle cx="55" cy="48" r="1.3" fill="#E8E4FF" opacity="0.9"/>
+  <circle cx="5" cy="38" r="0.8" fill="#E8E4FF" opacity="0.7"/>
+
+  <defs>
+    <radialGradient id="planetShade" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#9C8FF7" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#7C6BF0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
