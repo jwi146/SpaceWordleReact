@@ -1,6 +1,6 @@
 //evaluate whether a guess is correct, has correct letters or is completely wrong
 
-function evaluateGuess (guess, target){
+export function evaluateGuess (guess, target){
 
    let result = new Array(5);
    let targetLetters = target.split("");

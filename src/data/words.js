@@ -11,7 +11,7 @@ export const TARGETWORDS =[
 ];
 
 //guesses which can either be targets or valid words
-export const VALID_GUESSES = new Set([
+export const VALIDGUESSES = new Set([
   ...DICTIONARY,
   ...TARGETWORDS
 ]);
