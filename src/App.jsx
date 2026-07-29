@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { TARGETWORDS, VALIDGUESSES } from './data/words'
 import { evaluateGuess } from './logic/evaluateGuess'
 import './App.css'
+import Board from './components/Board'
 
 function App(){
   //the states for the game
@@ -70,6 +71,7 @@ function App(){
       <p>Target: {target}</p>
       <p>Status: {gameStatus}</p>
       <p>Current guess: {currentGuess}</p>
+      <Board guesses={guesses} currentGuess={currentGuess} />
     </div>
   )
 
