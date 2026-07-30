@@ -5,12 +5,24 @@ import './App.css'
 import Board from './components/Board'
 import Keyboard from './components/Keyboard'
 
+//helper function to load intial state
+function getInitialGameState(){
+  const saved = localStorage.getItem("spaceWordleGame");
+  if (saved != null){
+    return JSON.parse(saved);
+  }else{
+    const newTarget = TARGETWORDS[Math.floor(Math.random() * TARGETWORDS.length)];
+    return {target: newTarget, guesses: [], gameStatus: "playing"};
+  }
+}
+
 function App(){
   //the states for the game
-  const [target, setTarget] = useState(() => TARGETWORDS[Math.floor(Math.random()*TARGETWORDS.length)]);
-  const [guesses, setGuesses] = useState([]); //array of {word, result}
+  const initialState = getInitialGameState()
+  const [target, setTarget] = useState(initialState.target)
+  const [guesses, setGuesses] = useState(initialState.guesses)
+  const [gameStatus, setGameStatus] = useState(initialState.gameStatus)
   const [currentGuess, setCurrentGuess] = useState("");
-  const [gameStatus, setGameStatus] = useState("playing");
 
   //function for guess submission
   function submitGuess(){
@@ -55,7 +67,8 @@ function App(){
       setCurrentGuess(prev => prev + key.toUpperCase())
     }
   }
-    //use effect to listen for keyboard activity 
+
+  //use effect to listen for keyboard activity 
   useEffect (()=>{
     function onKeyDown(event){
       handleKeyInput(event.key);
@@ -63,8 +76,21 @@ function App(){
     window.addEventListener('keydown', onKeyDown);
     return ()=> window.removeEventListener('keydown', onKeyDown)
   }, [currentGuess, gameStatus])
-    
-  
+
+  //use effect to save to storage when something changes
+  useEffect(() => {
+    const gameState = { target, guesses, gameStatus }
+    localStorage.setItem("spaceWordleGame", JSON.stringify(gameState))
+  }, [target, guesses, gameStatus])
+
+  //fucntion to restart the game
+  function restartGame(){
+    localStorage.removeItem("spaceWordleGame");
+    const newTarget = TARGETWORDS[Math.floor(Math.random()*TARGETWORDS.length)]
+    setTarget(newTarget);
+    setGuesses([]);
+    setGameStatus("playing");
+  }
 
   return(
     <div>
@@ -74,6 +100,9 @@ function App(){
       <p>Current guess: {currentGuess}</p>
       <Board guesses={guesses} currentGuess={currentGuess} />
       <Keyboard guesses={guesses} onKeyPress={handleKeyInput} />
+      {gameStatus !== "playing" && (
+        <button onClick={restartGame}>Play Again</button>
+      )}
     </div>
   )
 
