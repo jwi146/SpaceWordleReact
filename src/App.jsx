@@ -3,6 +3,7 @@ import { TARGETWORDS, VALIDGUESSES } from './data/words'
 import { evaluateGuess } from './logic/evaluateGuess'
 import './App.css'
 import Board from './components/Board'
+import Keyboard from './components/Keyboard'
 
 function App(){
   //the states for the game
@@ -72,6 +73,7 @@ function App(){
       <p>Status: {gameStatus}</p>
       <p>Current guess: {currentGuess}</p>
       <Board guesses={guesses} currentGuess={currentGuess} />
+      <Keyboard guesses={guesses} onKeyPress={handleKeyInput} />
     </div>
   )
 
